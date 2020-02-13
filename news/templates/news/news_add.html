@@ -1,0 +1,29 @@
+<!-- 繼承模板 -->
+{% extends 'news/base.html' %} 
+{% block content %}
+
+</div>
+
+	<div class="content container-fluid">
+		  <div class="col-md-8">         
+			 <form action="/news/add_record" method="post" accept-charset="utf-8">            
+			 {% csrf_token %}  
+
+				 <h3>發佈新聞</h3> 
+				 
+				 <br>
+				{% for field in post_form %}
+				  <div class="form-group">
+				   {{ field.label_tag }} {{ field }} 
+				   {{ field.errors }}
+				  </div>
+				{% endfor %}
+
+			<div align="center">
+			 <input class="submit-mine" type="submit" name="add_record" value="發佈"> 
+			</div>
+			 </form>    
+			 <br>
+		  </div>
+
+{% endblock %}

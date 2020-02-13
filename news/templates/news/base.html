@@ -1,0 +1,56 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- 適應響應式設計 -->
+    <!-- 將標題區塊化 -->
+    <title>{% block title %}{% endblock %}</title>
+	
+	<!-- Latest compiled and miniﬁed CSS --> 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<!-- google font CDN -->
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" type="text/css">
+	<!--<link rel="stylesheet" href ="/static/css/blog.css">-->         
+	<link rel="stylesheet" href="{% static 'css/blog.css' %}"> 	
+    
+	{% block header_extends %}{% endblock %}  <!-- 用於擴展額外 css -->
+</head>
+<body>
+    <div class="page-header">
+        <!-- 連接回主頁 -->
+        <a href="{% url 'news_list' %}"><h1>News Classifier - 新聞分類</h1></a>
+    </div>
+	
+	<div class="panel panel-warning">
+		<div class="panel-heading">
+			<a class="lead-mid" href="{% url 'news_list' %}">首頁</a> 
+			<span class="lead-mid"> | </span>
+			<a class="lead-mid" href="{% url 'news_add' %}">新聞上傳</a> 
+			<span class="lead-mid"> | </span>
+    
+    {% block content %}{% endblock %}
+	
+	<!-- 右區塊文章分類 -->
+	<div class="hidden-xs col-lg-2">
+		<br>			
+		<div class="list-group">
+		<div class="list-group-item list-group-item-success lead-mid">新聞分類</div>
+			{% for type in type_arr %}
+			
+			<a href="{% url 'news_nav' num=type.type_id %}" class="list-group-item lead-small">
+				{{ type.type_name }}
+				<span class="badge lead-xs">{{ type.cnt }}</span>
+			</a>					
+			{% empty %}
+			<ul>暫無分類，敬請期待</ul>
+			{% endfor %}
+		</div>
+	</div>	
+</div>
+	
+	<!-- 導入bootstrap和jquery -->
+	<script type="text/javascript" src="{% static 'css/jquery-3.4.1.js' %}"></script
+    <script type="text/javascript" src="{% static 'css/bootstrap/js/bootstrap.min.js' %}"></script>
+</body>
+</html>
