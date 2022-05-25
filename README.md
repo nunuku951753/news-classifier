@@ -1,6 +1,6 @@
 ## News Classifier
 
-### Develop a news classifier websit, with Python, BigQuery, Keras, LSTM, Django to complete.
+### A news classifier websit, develop with Python, BigQuery, Keras, LSTM, Django.
 ### Demo video: https://youtu.be/geK3kLRbDf4
 
 * news/NewsCrawler.ipynb  
